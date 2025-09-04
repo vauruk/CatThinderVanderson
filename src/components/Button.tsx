@@ -8,7 +8,7 @@ import {
   ImageSourcePropType,
   ActivityIndicator,
 } from 'react-native';
-import { color } from '../views/styles';
+import { styles } from './styles';
 
 interface ButtonProps {
   onPress: () => void;
@@ -28,21 +28,21 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   label,
   underlayColor = '#8d7373ff',
-  disabled = false,
+  // disabled = false,
   loading = false,
 }) => (
   <TouchableHighlight
-    style={style}
+    style={[styles.button, style]}
     onPress={onPress}
     underlayColor={underlayColor}
     disabled={loading}
   >
     {loading ? (
-      <ActivityIndicator size="small" color={color.error} />
+      <ActivityIndicator size="small" color="#FF6F61" />
     ) : icon ? (
       <Image source={icon} />
     ) : (
-      <Text style={textStyle}>{label}</Text>
+      <Text style={[styles.buttonText, textStyle]}>{label}</Text>
     )}
   </TouchableHighlight>
 );

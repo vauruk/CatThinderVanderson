@@ -42,15 +42,15 @@ export const CatDetailCard: React.FC<CatDetailCardProps> = ({ id }) => {
   return (
     <View style={styles.card}>
       <Row>
-        <Col flex={0.7} style={{ alignItems: 'flex-start' }}>
+        <Col flex={0.7} style={styles.alignStart}>
           <Text style={styles.title}>{breed.name}</Text>
         </Col>
-        <Col flex={0.3} style={{ alignItems: 'flex-end' }}>
+        <Col flex={0.3} style={styles.alignEnd}>
           <Text style={styles.title}>{breed.intelligence}</Text>
         </Col>
       </Row>
       <Row>
-        <Col flex={0.7} style={{ alignItems: 'flex-start' }}>
+        <Col flex={0.7} style={styles.alignStart}>
           <Text style={styles.origin}>{breed.origin}</Text>
         </Col>
       </Row>

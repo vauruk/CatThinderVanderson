@@ -64,7 +64,7 @@ export const CatTinderScreen = () => {
           </Col>
         </Row>
       </View>
-      <View style={{ height: '60%' }}>
+      <View style={styles.cardContainer}>
         <FlatList
           ref={flatListRef}
           data={cats}
@@ -138,10 +138,8 @@ export const CatTinderScreen = () => {
         </Row>
       </View>
       {voteState.error && (
-        <View style={{ marginTop: 8 }}>
-          <Text style={{ color: 'red', textAlign: 'center' }}>
-            {voteState.error}
-          </Text>
+        <View style={styles.voteErrorContainer}>
+          <Text style={styles.voteErrorText}>{voteState.error}</Text>
         </View>
       )}
       <View style={styles.actionBar}>

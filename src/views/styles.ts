@@ -130,4 +130,14 @@ export const styles = StyleSheet.create({
     backgroundColor: color.gray,
     opacity: 0.5,
   },
+  voteErrorText: {
+    color: 'red',
+    textAlign: 'center',
+  },
+  voteErrorContainer: {
+    marginTop: 8,
+  },
+  cardContainer: {
+    height: '60%',
+  },
 });
