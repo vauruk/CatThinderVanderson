@@ -4,3 +4,15 @@ export interface Cat {
   width: number;
   height: number;
 }
+
+export interface CatBreed {
+  name: string;
+  origin: string;
+  life_span: string;
+}
+
+export interface CatDetail {
+  id: string;
+  url: string;
+  breeds: CatBreed[];
+}
