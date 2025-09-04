@@ -6,7 +6,9 @@ import {
   ViewStyle,
   TextStyle,
   ImageSourcePropType,
+  ActivityIndicator,
 } from 'react-native';
+import { color } from '../views/styles';
 
 interface ButtonProps {
   onPress: () => void;
@@ -15,6 +17,8 @@ interface ButtonProps {
   icon?: ImageSourcePropType;
   label?: string;
   underlayColor?: string;
+  loading?: boolean;
+  disabled?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -24,13 +28,22 @@ const Button: React.FC<ButtonProps> = ({
   icon,
   label,
   underlayColor = '#8d7373ff',
+  disabled = false,
+  loading = false,
 }) => (
   <TouchableHighlight
     style={style}
     onPress={onPress}
     underlayColor={underlayColor}
+    disabled={loading}
   >
-    {icon ? <Image source={icon} /> : <Text style={textStyle}>{label}</Text>}
+    {loading ? (
+      <ActivityIndicator size="small" color={color.error} />
+    ) : icon ? (
+      <Image source={icon} />
+    ) : (
+      <Text style={textStyle}>{label}</Text>
+    )}
   </TouchableHighlight>
 );
 

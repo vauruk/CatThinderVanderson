@@ -1,3 +1,7 @@
+export interface VoteState {
+  loading: boolean;
+  error: string | null;
+}
 import { Cat } from '../services/types';
 
 export interface CatState {

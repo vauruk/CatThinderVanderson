@@ -12,7 +12,6 @@ export class CatDetailService {
         },
       },
     );
-    console.log('Fetched Cat Detail:', response.data);
     return response.data;
   }
 }

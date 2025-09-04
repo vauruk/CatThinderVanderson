@@ -1,12 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  View,
-  FlatList,
-  Image,
-  ActivityIndicator,
-  TouchableHighlight,
-} from 'react-native';
-import { styles } from './styles';
+import { View, FlatList, Image, ActivityIndicator, Text } from 'react-native';
+import { color, styles } from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCats } from '../store/catSlice';
 import { RootState } from '../store/store';
@@ -14,12 +8,14 @@ import CatDetailCard from '../components/CatDetailCard';
 import Row from '../components/FlexBox/Row';
 import Col from '../components/FlexBox/Col';
 import Button from '../components/Button';
+import { sendVote } from '../store/voteSlice';
 
 export const CatTinderScreen = () => {
   const dispatch = useDispatch();
   const { cats, loading } = useSelector((state: RootState) => state.cats);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
+  const voteState = useSelector((state: RootState) => state.vote);
 
   useEffect(() => {
     dispatch(fetchCats(100) as any);
@@ -27,12 +23,35 @@ export const CatTinderScreen = () => {
 
   if (loading) {
     return (
-      <ActivityIndicator style={styles.loader} size="large" color="#FF6F61" />
+      <ActivityIndicator
+        style={styles.loader}
+        size="large"
+        color={color.error}
+      />
     );
   }
 
   return (
     <View style={styles.container}>
+      <View style={styles.headerBar}>
+        <Row>
+          <Col flex={0.5}>
+            <Button
+              style={styles.actionHeaderBarButton}
+              icon={require('../assets/flame.png')}
+              onPress={() => {}}
+            />
+          </Col>
+          <Col flex={0.5}>
+            <Button
+              style={styles.actionHeaderBarButton}
+              icon={require('../assets/star.png')}
+              onPress={() => {}}
+              disabled={true}
+            />
+          </Col>
+        </Row>
+      </View>
       <View style={{ height: '60%' }}>
         <FlatList
           ref={flatListRef}
@@ -82,7 +101,17 @@ export const CatTinderScreen = () => {
             <Button
               style={styles.actionButton}
               icon={require('../assets/like.png')}
-              onPress={() => {
+              onPress={async () => {
+                const currentCat = cats[selectedIndex];
+                if (currentCat) {
+                  await dispatch(
+                    sendVote({
+                      image_id: currentCat.id,
+                      sub_id: 'user-vandersonvauruk',
+                      value: 1,
+                    }) as any,
+                  );
+                }
                 if (selectedIndex < cats.length - 1) {
                   flatListRef.current?.scrollToIndex({
                     index: selectedIndex + 1,
@@ -91,10 +120,18 @@ export const CatTinderScreen = () => {
                   setSelectedIndex(selectedIndex + 1);
                 }
               }}
+              loading={voteState.loading}
             />
           </Col>
         </Row>
       </View>
+      {voteState.error && (
+        <View style={{ marginTop: 8 }}>
+          <Text style={{ color: 'red', textAlign: 'center' }}>
+            {voteState.error}
+          </Text>
+        </View>
+      )}
       <View style={styles.actionBar}>
         <Row>
           <Col flex={0.33}>
