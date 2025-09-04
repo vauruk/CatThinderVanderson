@@ -9,6 +9,10 @@ export interface CatBreed {
   name: string;
   origin: string;
   life_span: string;
+  adaptability: number;
+  affection_level: number;
+  child_friendly: number;
+  intelligence: number;
 }
 
 export interface CatDetail {

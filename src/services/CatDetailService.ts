@@ -1,11 +1,18 @@
 import axios from 'axios';
 import { CatDetail } from './types';
+import Config from 'react-native-config';
 
 export class CatDetailService {
   static async fetchCatDetail(id: string): Promise<CatDetail> {
     const response = await axios.get<CatDetail>(
       `https://api.thecatapi.com/v1/images/${id}`,
+      {
+        headers: {
+          'x-api-key': Config.API_KEY,
+        },
+      },
     );
+    console.log('Fetched Cat Detail:', response.data);
     return response.data;
   }
 }

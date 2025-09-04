@@ -1,12 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { CatDetailService } from '../services/CatDetailService';
-import { CatDetail } from '../services/types';
-
-interface CatDetailState {
-  detail: CatDetail | null;
-  loading: boolean;
-  error: string | null;
-}
+import { CatDetailState } from './types';
 
 const initialState: CatDetailState = {
   detail: null,

@@ -5,6 +5,8 @@ import { CatDetailCardProps } from './types';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCatDetail, clearCatDetail } from '../store/catDetailSlice';
 import { RootState } from '../store/store';
+import Row from './FlexBox/Row';
+import Col from './FlexBox/Col';
 
 export const CatDetailCard: React.FC<CatDetailCardProps> = ({ id }) => {
   const dispatch = useDispatch();
@@ -21,7 +23,13 @@ export const CatDetailCard: React.FC<CatDetailCardProps> = ({ id }) => {
 
   if (loading)
     return (
-      <ActivityIndicator style={styles.blank} size="small" color="#FF6F61" />
+      <View style={styles.card}>
+        <ActivityIndicator
+          style={styles.noDetailText}
+          size="small"
+          color="#FF6F61"
+        />
+      </View>
     );
   if (error || !detail || !detail.breeds || detail.breeds.length === 0) {
     return (
@@ -33,11 +41,19 @@ export const CatDetailCard: React.FC<CatDetailCardProps> = ({ id }) => {
   const breed = detail.breeds[0];
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>{breed.name}</Text>
-      <Text style={styles.text}>Origem: {breed.origin}</Text>
-      <Text style={styles.text}>
-        Expectativa de vida: {breed.life_span} anos
-      </Text>
+      <Row>
+        <Col flex={0.7} style={{ alignItems: 'flex-start' }}>
+          <Text style={styles.title}>{breed.name}</Text>
+        </Col>
+        <Col flex={0.3} style={{ alignItems: 'flex-end' }}>
+          <Text style={styles.title}>{breed.intelligence}</Text>
+        </Col>
+      </Row>
+      <Row>
+        <Col flex={0.7} style={{ alignItems: 'flex-start' }}>
+          <Text style={styles.origin}>{breed.origin}</Text>
+        </Col>
+      </Row>
     </View>
   );
 };

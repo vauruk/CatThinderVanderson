@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     borderTopEndRadius: 20,
     marginHorizontal: 20,
     borderTopStartRadius: 20,
-    marginTop: -56,
+    marginTop: -60,
     alignItems: 'flex-start',
     shadowColor: '#201616ff',
     shadowOffset: { width: 0, height: 2 },
@@ -21,6 +21,8 @@ export const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 2,
     minHeight: 56,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
   },
   noDetailText: {
     color: '#FF6F61',
@@ -35,6 +37,11 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 8,
     color: '#222',
+  },
+  origin: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#BFBFC0',
   },
   text: {
     fontSize: 16,

@@ -1,12 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { CatService } from '../services/CatService';
-import { Cat } from '../services/types';
-
-interface CatState {
-  cats: Cat[];
-  loading: boolean;
-  error: string | null;
-}
+import { CatState } from './types';
 
 const initialState: CatState = {
   cats: [],
