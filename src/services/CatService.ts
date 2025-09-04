@@ -1,11 +1,5 @@
 import axios from 'axios';
-
-export interface Cat {
-  id: string;
-  url: string;
-  width: number;
-  height: number;
-}
+import { Cat } from './types';
 
 export class CatService {
   static async fetchCats(limit = 10): Promise<Cat[]> {

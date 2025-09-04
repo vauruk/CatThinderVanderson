@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { CatService, Cat } from '../services/CatService';
+import { CatService } from '../services/CatService';
+import { Cat } from '../services/types';
 
 interface CatState {
   cats: Cat[];
