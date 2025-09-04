@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   FlatList,
@@ -18,6 +18,7 @@ export const CatTinderScreen = () => {
   const dispatch = useDispatch();
   const { cats, loading } = useSelector((state: RootState) => state.cats);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const flatListRef = useRef<FlatList>(null);
 
   useEffect(() => {
     dispatch(fetchCats(100) as any);
@@ -33,6 +34,7 @@ export const CatTinderScreen = () => {
     <View style={styles.container}>
       <View style={{ height: '60%' }}>
         <FlatList
+          ref={flatListRef}
           data={cats}
           keyExtractor={item => item.id}
           renderItem={({ item, index }) => (
@@ -63,7 +65,15 @@ export const CatTinderScreen = () => {
           <Col flex={0.5}>
             <TouchableHighlight
               style={styles.actionButton}
-              onPress={() => {}}
+              onPress={() => {
+                if (selectedIndex < cats.length - 1) {
+                  flatListRef.current?.scrollToIndex({
+                    index: selectedIndex + 1,
+                    animated: true,
+                  });
+                  setSelectedIndex(selectedIndex + 1);
+                }
+              }}
               underlayColor={'#8d7373ff'}
             >
               <Image source={require('../assets/hate.png')} />
@@ -72,7 +82,15 @@ export const CatTinderScreen = () => {
           <Col flex={0.5}>
             <TouchableHighlight
               style={styles.actionButton}
-              onPress={() => {}}
+              onPress={() => {
+                if (selectedIndex < cats.length - 1) {
+                  flatListRef.current?.scrollToIndex({
+                    index: selectedIndex + 1,
+                    animated: true,
+                  });
+                  setSelectedIndex(selectedIndex + 1);
+                }
+              }}
               underlayColor={'#8d7373ff'}
             >
               <Image source={require('../assets/like.png')} />
@@ -83,17 +101,29 @@ export const CatTinderScreen = () => {
       <View style={styles.actionBar}>
         <Row>
           <Col flex={0.33}>
-            <TouchableHighlight onPress={() => {}} underlayColor={'#8d7373ff'}>
+            <TouchableHighlight
+              style={styles.actionBarButton}
+              onPress={() => {}}
+              underlayColor={'#8d7373ff'}
+            >
               <Image source={require('../assets/powcat.png')} />
             </TouchableHighlight>
           </Col>
           <Col flex={0.33}>
-            <TouchableHighlight onPress={() => {}} underlayColor={'#8d7373ff'}>
+            <TouchableHighlight
+              style={styles.actionBarButton}
+              onPress={() => {}}
+              underlayColor={'#8d7373ff'}
+            >
               <Image source={require('../assets/message-circle.png')} />
             </TouchableHighlight>
           </Col>
           <Col flex={0.33}>
-            <TouchableHighlight onPress={() => {}} underlayColor={'#8d7373ff'}>
+            <TouchableHighlight
+              style={styles.actionBarButton}
+              onPress={() => {}}
+              underlayColor={'#8d7373ff'}
+            >
               <Image source={require('../assets/user.png')} />
             </TouchableHighlight>
           </Col>
