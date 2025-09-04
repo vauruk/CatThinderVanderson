@@ -125,4 +125,8 @@ export const styles = StyleSheet.create({
     elevation: 2,
     backgroundColor: color.white,
   },
+  actionHeaderBarButtonInactive: {
+    backgroundColor: color.gray,
+    opacity: 0.5,
+  },
 });

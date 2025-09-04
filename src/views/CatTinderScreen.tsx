@@ -14,6 +14,7 @@ export const CatTinderScreen = () => {
   const dispatch = useDispatch();
   const { cats, loading } = useSelector((state: RootState) => state.cats);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [active, setActive] = useState(false);
   const flatListRef = useRef<FlatList>(null);
   const voteState = useSelector((state: RootState) => state.vote);
 
@@ -31,23 +32,34 @@ export const CatTinderScreen = () => {
     );
   }
 
+  const handleChangeStateHeaderButton = () => {
+    setActive(!active);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerBar}>
         <Row>
           <Col flex={0.5}>
             <Button
-              style={styles.actionHeaderBarButton}
               icon={require('../assets/flame.png')}
-              onPress={() => {}}
+              style={[
+                styles.actionHeaderBarButton,
+                !active || styles.actionHeaderBarButtonInactive,
+              ]}
+              onPress={handleChangeStateHeaderButton}
+              disabled={!active}
             />
           </Col>
           <Col flex={0.5}>
             <Button
-              style={styles.actionHeaderBarButton}
+              style={[
+                styles.actionHeaderBarButton,
+                active || styles.actionHeaderBarButtonInactive,
+              ]}
               icon={require('../assets/star.png')}
-              onPress={() => {}}
-              disabled={true}
+              onPress={handleChangeStateHeaderButton}
+              disabled={active}
             />
           </Col>
         </Row>
