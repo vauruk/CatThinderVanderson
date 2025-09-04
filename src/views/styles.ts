@@ -87,6 +87,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     width: '50%',
+    height: 44,
     paddingVertical: 5,
     backgroundColor: color.white,
   },
