@@ -10,11 +10,11 @@ import Col from '../components/FlexBox/Col';
 import Button from '../components/Button';
 import { sendVote } from '../store/voteSlice';
 
-export const CatTinderScreen = () => {
+const CatTinderScreen = () => {
   const dispatch = useDispatch();
   const { cats, loading } = useSelector((state: RootState) => state.cats);
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
   const flatListRef = useRef<FlatList>(null);
   const voteState = useSelector((state: RootState) => state.vote);
 
@@ -45,8 +45,8 @@ export const CatTinderScreen = () => {
               icon={require('../assets/flame.png')}
               style={[
                 styles.actionHeaderBarButton,
-                !active || styles.actionHeaderBarButtonInactive,
-              ]}
+                !active ? styles.actionHeaderBarButtonInactive : null,
+              ].filter(Boolean)}
               onPress={handleChangeStateHeaderButton}
               disabled={!active}
             />
@@ -55,8 +55,8 @@ export const CatTinderScreen = () => {
             <Button
               style={[
                 styles.actionHeaderBarButton,
-                active || styles.actionHeaderBarButtonInactive,
-              ]}
+                active ? styles.actionHeaderBarButtonInactive : null,
+              ].filter(Boolean)}
               icon={require('../assets/star.png')}
               onPress={handleChangeStateHeaderButton}
               disabled={active}
@@ -96,6 +96,7 @@ export const CatTinderScreen = () => {
         <Row>
           <Col flex={0.5}>
             <Button
+              testId="hate-button"
               style={styles.actionButton}
               icon={require('../assets/hate.png')}
               onPress={() => {
@@ -111,6 +112,7 @@ export const CatTinderScreen = () => {
           </Col>
           <Col flex={0.5}>
             <Button
+              testId="likeButtonTestId"
               style={styles.actionButton}
               icon={require('../assets/like.png')}
               onPress={async () => {

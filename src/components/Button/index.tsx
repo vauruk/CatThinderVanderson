@@ -3,20 +3,9 @@ import {
   TouchableHighlight,
   Text,
   Image,
-  ViewStyle,
-  TextStyle,
-  ImageSourcePropType,
 } from 'react-native';
 import { color } from '../../views/styles';
-
-interface ButtonProps {
-  onPress: () => void;
-  style?: ViewStyle;
-  textStyle?: TextStyle;
-  icon?: ImageSourcePropType;
-  label?: string;
-  underlayColor?: string;
-}
+import { ButtonProps } from './types';
 
 const Button: React.FC<ButtonProps> = ({
   onPress,

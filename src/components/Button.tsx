@@ -19,6 +19,7 @@ interface ButtonProps {
   underlayColor?: string;
   loading?: boolean;
   disabled?: boolean;
+  testId?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -27,11 +28,13 @@ const Button: React.FC<ButtonProps> = ({
   textStyle,
   icon,
   label,
+  testId,
   underlayColor = '#8d7373ff',
   // disabled = false,
   loading = false,
 }) => (
   <TouchableHighlight
+    testID={testId}
     style={[styles.button, style]}
     onPress={onPress}
     underlayColor={underlayColor}
