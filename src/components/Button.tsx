@@ -7,7 +7,6 @@ import {
   TextStyle,
   ImageSourcePropType,
 } from 'react-native';
-import { color } from '../../views/styles';
 
 interface ButtonProps {
   onPress: () => void;
@@ -24,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
   textStyle,
   icon,
   label,
-  underlayColor = color.underlayColor,
+  underlayColor = '#8d7373ff',
 }) => (
   <TouchableHighlight
     style={style}

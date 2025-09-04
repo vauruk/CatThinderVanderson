@@ -10,6 +10,7 @@ export const color = {
   shadow: '#222222',
   textSecondary: '#888888',
   error: '#FF6F61',
+  underlayColor: '#8d7373ff',
 };
 
 export const styles = StyleSheet.create({

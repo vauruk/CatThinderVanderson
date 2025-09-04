@@ -13,6 +13,7 @@ import { RootState } from '../store/store';
 import CatDetailCard from '../components/CatDetailCard';
 import Row from '../components/FlexBox/Row';
 import Col from '../components/FlexBox/Col';
+import Button from '../components/Button';
 
 export const CatTinderScreen = () => {
   const dispatch = useDispatch();
@@ -63,8 +64,9 @@ export const CatTinderScreen = () => {
       <View style={styles.buttonBar}>
         <Row>
           <Col flex={0.5}>
-            <TouchableHighlight
+            <Button
               style={styles.actionButton}
+              icon={require('../assets/hate.png')}
               onPress={() => {
                 if (selectedIndex < cats.length - 1) {
                   flatListRef.current?.scrollToIndex({
@@ -74,14 +76,12 @@ export const CatTinderScreen = () => {
                   setSelectedIndex(selectedIndex + 1);
                 }
               }}
-              underlayColor={'#8d7373ff'}
-            >
-              <Image source={require('../assets/hate.png')} />
-            </TouchableHighlight>
+            />
           </Col>
           <Col flex={0.5}>
-            <TouchableHighlight
+            <Button
               style={styles.actionButton}
+              icon={require('../assets/like.png')}
               onPress={() => {
                 if (selectedIndex < cats.length - 1) {
                   flatListRef.current?.scrollToIndex({
@@ -91,41 +91,32 @@ export const CatTinderScreen = () => {
                   setSelectedIndex(selectedIndex + 1);
                 }
               }}
-              underlayColor={'#8d7373ff'}
-            >
-              <Image source={require('../assets/like.png')} />
-            </TouchableHighlight>
+            />
           </Col>
         </Row>
       </View>
       <View style={styles.actionBar}>
         <Row>
           <Col flex={0.33}>
-            <TouchableHighlight
+            <Button
               style={styles.actionBarButton}
+              icon={require('../assets/powcat.png')}
               onPress={() => {}}
-              underlayColor={'#8d7373ff'}
-            >
-              <Image source={require('../assets/powcat.png')} />
-            </TouchableHighlight>
+            />
           </Col>
           <Col flex={0.33}>
-            <TouchableHighlight
+            <Button
               style={styles.actionBarButton}
+              icon={require('../assets/message-circle.png')}
               onPress={() => {}}
-              underlayColor={'#8d7373ff'}
-            >
-              <Image source={require('../assets/message-circle.png')} />
-            </TouchableHighlight>
+            />
           </Col>
           <Col flex={0.33}>
-            <TouchableHighlight
+            <Button
               style={styles.actionBarButton}
+              icon={require('../assets/user.png')}
               onPress={() => {}}
-              underlayColor={'#8d7373ff'}
-            >
-              <Image source={require('../assets/user.png')} />
-            </TouchableHighlight>
+            />
           </Col>
         </Row>
       </View>
