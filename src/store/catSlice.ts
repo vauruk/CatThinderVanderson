@@ -14,17 +14,20 @@ const initialState: CatState = {
   error: null,
 };
 
-export const fetchCats = createAsyncThunk('cats/fetchCats', async (limit: number = 10) => {
-  return await CatService.fetchCats(limit);
-});
+export const fetchCats = createAsyncThunk(
+  'cats/fetchCats',
+  async (limit: number = 10) => {
+    return await CatService.fetchCats(limit);
+  },
+);
 
 const catSlice = createSlice({
   name: 'cats',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(fetchCats.pending, (state) => {
+      .addCase(fetchCats.pending, state => {
         state.loading = true;
         state.error = null;
       })
